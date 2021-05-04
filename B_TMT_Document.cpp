@@ -1,0 +1,98 @@
+//author: Dipjoy Basak
+//dip_10
+
+#include <bits/stdc++.h>
+using namespace std;
+
+#define endl "\n"
+#define ll long long
+#define int ll
+#define ld long double
+#define pb push_back
+#define mp make_pair
+#define vi vector<int>
+#define pi pair<int, int>
+#define vpi vector<pair<int, int>>
+#define rep(i, l, r) for (int i = l; i <= r; i++)
+#define rrep(i, r, l) for (int i = r; i >= l; i--)
+#define debug(x) cout << x << "debug" << endl;
+#define maxn 1000005
+#define INF INT_MAX
+
+void solve()
+{
+    int n;
+    cin >> n;
+    string s;
+    cin >> s;
+    int cnt = 0;
+    for (int i = 0; i < n; i++)
+    {
+        if (s[i] == 'M')
+            cnt++;
+    }
+
+    if (cnt * 3 != n || s[0] == 'M' || s[n - 1] == 'M')
+    {
+        cout << "NO" << endl;
+        return;
+    }
+    string k;
+    k += s[0];
+    stack<char> stk, stk2;
+    stk.push(s[0]);
+    rep(i, 1, n - 1)
+    {
+        if (s[i] == 'T')
+        {
+            stk.push('T');
+        }
+        else
+        {
+            if (!stk.empty())
+            {
+                stk.pop();
+            }
+            else
+            {
+                cout << "NO" << endl;
+                return;
+            }
+        }
+    }
+    stk2.push(s[n - 1]);
+    rrep(i, n - 2, 0)
+    {
+        if (s[i] == 'T')
+        {
+            stk2.push('T');
+        }
+        else
+        {
+            if (!stk2.empty())
+            {
+                stk2.pop();
+            }
+            else
+            {
+                cout << "NO" << endl;
+                return;
+            }
+        }
+    }
+    cout << "YES" << endl;
+}
+int32_t main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+    int t;
+    t = 1;
+    cin >> t;
+    while (t--)
+    {
+        solve();
+    }
+    return 0;
+}
